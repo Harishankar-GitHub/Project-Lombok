@@ -8,6 +8,7 @@
 - [Installing Lombok](https://projectlombok.org/setup/overview)
 - [Lombok Download](https://projectlombok.org/download) and [Lombok Changelog](https://projectlombok.org/changelog)
 - [Lombok Maven Plugin](http://anthonywhitford.com/lombok.maven/lombok-maven-plugin/)
+- [Lombok GitHub](https://github.com/projectlombok)
 
 > ***Some references/examples/blogs***
 - [Introduction to Lombok - Baeldung](https://www.baeldung.com/intro-to-project-lombok)
@@ -20,4 +21,5 @@
 
 | My Code | Official Doc |
 |--|--|
-| [@val]() | [Click here](https://projectlombok.org/features/val) |
+| [@val](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok1/val/Val.java) | [Click here](https://projectlombok.org/features/val) |
+| [@var]() | [Click here](https://projectlombok.org/features/var) |
