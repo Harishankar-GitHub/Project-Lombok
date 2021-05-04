@@ -3,6 +3,7 @@
 > ***Official Website/Document links***
 - [**Project Lombok - Official Website**](https://projectlombok.org/)
 - [Stable Features](https://projectlombok.org/features/all)
+- [***Lombok Configuration System***](https://projectlombok.org/features/configuration)
 - [Experimental Features](https://projectlombok.org/features/experimental/all)
 - [Lombok Javadoc](https://projectlombok.org/api/)
 - [Installing Lombok](https://projectlombok.org/setup/overview)
@@ -22,4 +23,5 @@
 | My Code | Official Doc |
 |--|--|
 | [@val](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok1/val/Val.java) | [Click here](https://projectlombok.org/features/val) |
-| [@var]() | [Click here](https://projectlombok.org/features/var) |
+| [@var](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok2/var/Var.java) | [Click here](https://projectlombok.org/features/var) |
+| [@NonNull]() | [Click here](https://projectlombok.org/features/NonNull) |

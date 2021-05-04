@@ -2,6 +2,8 @@ package com.lombok.main;
 
 import com.lombok1.val.Val;
 import com.lombok2.var.Var;
+import com.lombok3.nonNull.NonNullExample;
+import com.lombok3.nonNull.NonNullExampleWithConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,12 +20,14 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 
 	@Autowired Val val;
 	@Autowired Var var;
+	@Autowired NonNullExample nonNull;
 
 	@Override
 	public void run(String... args) throws Exception {
 
 		valExample();
 		varExample();
+		nonNullExample();
 	}
 
 	private void valExample() {
@@ -42,6 +46,21 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		headerAndFooter(value);
 
 		var.example();
+
+		headerAndFooter(value);
+	}
+
+	private void nonNullExample() {
+		String value = "@NonNull";
+		headerAndFooter(value);
+
+		nonNull.example("A valid String");
+		nonNull.example("");
+//		nonNull.example(null);
+
+		NonNullExampleWithConstructor constructorExample;
+		constructorExample = new NonNullExampleWithConstructor("I'm a String passed to the Constructor!");
+//		constructorExample = new NonNullExampleWithConstructor(null);
 
 		headerAndFooter(value);
 	}
