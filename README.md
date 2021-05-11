@@ -6,6 +6,7 @@
 - [***Lombok Configuration System***](https://projectlombok.org/features/configuration)
 - [Experimental Features](https://projectlombok.org/features/experimental/all)
 - [Lombok Javadoc](https://projectlombok.org/api/)
+- [Lombok Oracle Doc](https://www.oracle.com/corporate/features/project-lombok.html)
 - [Installing Lombok](https://projectlombok.org/setup/overview)
 - [Lombok Download](https://projectlombok.org/download) and [Lombok Changelog](https://projectlombok.org/changelog)
 - [Lombok Maven Plugin](http://anthonywhitford.com/lombok.maven/lombok-maven-plugin/)
@@ -25,4 +26,5 @@
 | [@val](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok1/val/Val.java) | [Click here](https://projectlombok.org/features/val) |
 | [@var](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok2/var/Var.java) | [Click here](https://projectlombok.org/features/var) |
 | [@NonNull](https://github.com/Harishankar-GitHub/Project-Lombok/tree/main/Exploring-Project-Lombok/src/main/java/com/lombok3/nonNull) | [Click here](https://projectlombok.org/features/NonNull) |
-| [@Cleanup]() | [Click here](https://projectlombok.org/features/Cleanup) |
+| [@Cleanup](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok4/cleanup/CleanupExample.java) | [Click here](https://projectlombok.org/features/Cleanup) |
+| [@Getter/@Setter]() | [Click here](https://projectlombok.org/features/GetterSetter) |
