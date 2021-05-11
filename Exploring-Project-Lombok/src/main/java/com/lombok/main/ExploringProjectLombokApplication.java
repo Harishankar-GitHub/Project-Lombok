@@ -4,6 +4,7 @@ import com.lombok1.val.Val;
 import com.lombok2.var.Var;
 import com.lombok3.nonNull.NonNullExample;
 import com.lombok3.nonNull.NonNullExampleWithConstructor;
+import com.lombok3.nonNull.NonNullWithGetterAndSetter;
 import com.lombok4.cleanup.CleanupExample;
 import com.lombok5.getterAndSetter.GetterAndSetterOnClass;
 import com.lombok5.getterAndSetter.GetterAndSetterOnFields;
@@ -29,6 +30,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 	@Autowired Var var;
 	@Autowired NonNullExample nonNull;
 	@Autowired CleanupExample cleanupExample;
+	@Autowired NonNullWithGetterAndSetter withGetterAndSetter;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -71,6 +73,11 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		NonNullExampleWithConstructor constructorExample;
 		constructorExample = new NonNullExampleWithConstructor("I'm a String passed to the Constructor!");
 //		constructorExample = new NonNullExampleWithConstructor(null);
+
+//		withGetterAndSetter.setReviewTitle(null);
+//		System.out.println(withGetterAndSetter);
+		withGetterAndSetter.setReviewDescription("Review description");
+		System.out.println(withGetterAndSetter);
 
 		headerAndFooter(value);
 	}
