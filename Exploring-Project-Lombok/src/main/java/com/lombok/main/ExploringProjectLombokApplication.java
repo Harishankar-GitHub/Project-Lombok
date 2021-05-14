@@ -10,6 +10,7 @@ import com.lombok5.getterAndSetter.GetterAndSetterOnClass;
 import com.lombok5.getterAndSetter.GetterAndSetterOnFields;
 import com.lombok5.getterAndSetter.GetterAndSetterWithAccessLevel;
 import com.lombok5.getterAndSetter.GetterAndSetterWithAccessLevelNone;
+import com.lombok6.toString.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -40,6 +41,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		nonNullExample();
 		cleanupExample();
 		getterAndSetterExample();
+		toStringExample();
 	}
 
 	private void valExample() {
@@ -147,6 +149,22 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 				("XYZ", "FullStack Microservices Developer", 5);
 
 		System.out.println(withAccessLevelNone);
+	}
+
+	public void toStringExample()
+	{
+		String value = "@ToString";
+		headerAndFooter(value);
+
+		System.out.println(new DefaultToString());
+		System.out.println(new ToStringWithIncludeFieldNames());
+		System.out.println(new ToStringExclude());
+		System.out.println(new ToStringInclude());
+		System.out.println(new ToStringWithCallSuper());
+		System.out.println(new ToStringWithMethod());
+		System.out.println(new ToStringWithNameAndRank());
+
+		headerAndFooter(value);
 	}
 
 	private void headerAndFooter(String val) {

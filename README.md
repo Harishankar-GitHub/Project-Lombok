@@ -27,4 +27,5 @@
 | [@var](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok2/var/Var.java) | [Click here](https://projectlombok.org/features/var) |
 | [@NonNull](https://github.com/Harishankar-GitHub/Project-Lombok/tree/main/Exploring-Project-Lombok/src/main/java/com/lombok3/nonNull) | [Click here](https://projectlombok.org/features/NonNull) |
 | [@Cleanup](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok4/cleanup/CleanupExample.java) | [Click here](https://projectlombok.org/features/Cleanup) |
-| [@Getter/@Setter]() | [Click here](https://projectlombok.org/features/GetterSetter) |
+| [@Getter/@Setter](https://github.com/Harishankar-GitHub/Project-Lombok/tree/main/Exploring-Project-Lombok/src/main/java/com/lombok5/getterAndSetter) | [Click here](https://projectlombok.org/features/GetterSetter) |
+| [@ToString]() | [Click here](https://projectlombok.org/features/ToString) |
