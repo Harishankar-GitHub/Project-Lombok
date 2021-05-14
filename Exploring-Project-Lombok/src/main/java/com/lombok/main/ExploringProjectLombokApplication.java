@@ -2,20 +2,16 @@ package com.lombok.main;
 
 import com.lombok1.val.Val;
 import com.lombok2.var.Var;
-import com.lombok3.nonNull.NonNullExample;
-import com.lombok3.nonNull.NonNullExampleWithConstructor;
-import com.lombok3.nonNull.NonNullWithGetterAndSetter;
+import com.lombok3.nonNull.*;
 import com.lombok4.cleanup.CleanupExample;
-import com.lombok5.getterAndSetter.GetterAndSetterOnClass;
-import com.lombok5.getterAndSetter.GetterAndSetterOnFields;
-import com.lombok5.getterAndSetter.GetterAndSetterWithAccessLevel;
-import com.lombok5.getterAndSetter.GetterAndSetterWithAccessLevelNone;
+import com.lombok5.getterAndSetter.*;
 import com.lombok6.toString.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -72,11 +68,10 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		nonNull.example("");
 //		nonNull.example(null);
 
-		NonNullExampleWithConstructor constructorExample;
-		constructorExample = new NonNullExampleWithConstructor("I'm a String passed to the Constructor!");
-//		constructorExample = new NonNullExampleWithConstructor(null);
+		new NonNullExampleWithConstructor("I'm a String passed to the Constructor!");
+//		new NonNullExampleWithConstructor(null);
 
-//		withGetterAndSetter.setReviewTitle(null);
+//		withGetterAndSetter.setReviewTitle(null);		// ReviewTitle is marked as @NonNull.
 //		System.out.println(withGetterAndSetter);
 		withGetterAndSetter.setReviewDescription("Review description");
 		System.out.println(withGetterAndSetter);
