@@ -4,12 +4,12 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter(AccessLevel.NONE) @Setter
+@Getter @Setter
 public class GetterAndSetterWithAccessLevelNone
 {
     private String company;
     private String technology;
-    private int openings;
+    @Getter(AccessLevel.NONE) private int openings;     // Getter is not generated for this field.
 
     public GetterAndSetterWithAccessLevelNone(String company, String technology, int openings) {
         this.company = company;
