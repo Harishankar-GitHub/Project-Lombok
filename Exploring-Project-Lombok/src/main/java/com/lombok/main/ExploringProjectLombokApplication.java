@@ -6,14 +6,16 @@ import com.lombok3.nonNull.*;
 import com.lombok4.cleanup.CleanupExample;
 import com.lombok5.getterAndSetter.*;
 import com.lombok6.toString.*;
+import com.lombok7.equalsAndHashCode.EqualsAndHashCodeExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootApplication
 @ComponentScan("com.lombok*")
@@ -38,6 +40,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		cleanupExample();
 		getterAndSetterExample();
 		toStringExample();
+		equalsAndHashCodeExample();
 	}
 
 	private void valExample() {
@@ -158,6 +161,25 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println(new ToStringWithCallSuper());
 		System.out.println(new ToStringWithMethod());
 		System.out.println(new ToStringWithNameAndRank());
+
+		headerAndFooter(value);
+	}
+
+	public void equalsAndHashCodeExample()
+	{
+		String value = "@EqualsAndHashCode";
+		headerAndFooter(value);
+
+		Set<EqualsAndHashCodeExample> set = new HashSet<>();
+
+		set.add(new EqualsAndHashCodeExample());
+		System.out.println("Size of the Set after adding 1st element: " + set.size());
+		set.add(new EqualsAndHashCodeExample());
+		System.out.println("Size of the Set after adding 2nd element: " + set.size());
+		set.add(new EqualsAndHashCodeExample("Jill", "XYZ Company", 3, "Awesome Team !", "Cool Manager"));
+		System.out.println("Size of the Set after adding 3rd element: " + set.size());
+
+		System.out.println("EqualsAndHashCode Set has " + set.size() + " elements!");
 
 		headerAndFooter(value);
 	}
