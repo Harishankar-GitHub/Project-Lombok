@@ -46,6 +46,8 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 	@Autowired CleanupExample cleanupExample;
 	@Autowired NonNullWithGetterAndSetter withGetterAndSetter;
 
+	String value;
+
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -60,7 +62,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 	}
 
 	private void valExample() {
-		String value = "@val";
+		value = "@val";
 		headerAndFooter(value);
 
 		System.out.println("Val Example 1: " + val.example1());
@@ -71,7 +73,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 	}
 
 	private void varExample() {
-		String value = "@var";
+		value = "@var";
 		headerAndFooter(value);
 
 		var.example();
@@ -80,7 +82,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 	}
 
 	private void nonNullExample() {
-		String value = "@NonNull";
+		value = "@NonNull";
 		headerAndFooter(value);
 
 		nonNull.example("A valid String");
@@ -100,7 +102,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 
 	private void cleanupExample() throws IOException
 	{
-		String value = "@Cleanup";
+		value = "@Cleanup";
 		headerAndFooter(value);
 
 		cleanupExample.example();
@@ -110,7 +112,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 
 	private void getterAndSetterExample()
 	{
-		String value = "@Getter/@Setter";
+		value = "@Getter/@Setter";
 		headerAndFooter(value);
 
 		getterAndSetterOnFields();
@@ -140,12 +142,12 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		GetterAndSetterOnClass onClass = new GetterAndSetterOnClass();
 		onClass.setId(1L);
 		onClass.setName("Harish");
-		onClass.setDateOfBirth(LocalDate.of(1997, 07, 06));
+		onClass.setDateOfBirth(LocalDate.of(1997, 7, 6));
 
 		System.out.println(onClass);
 	}
 
-	public void getterAndSetterWithAccessLevel()
+	private void getterAndSetterWithAccessLevel()
 	{
 		System.out.println("*** With AccessLevel ***");
 
@@ -155,7 +157,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println(withAccessLevel);
 	}
 
-	public void getterAndSetterWithAccessLevelNone()
+	private void getterAndSetterWithAccessLevelNone()
 	{
 		System.out.println("*** With AccessLevel.NONE ***");
 
@@ -165,9 +167,9 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println(withAccessLevelNone);
 	}
 
-	public void toStringExample()
+	private void toStringExample()
 	{
-		String value = "@ToString";
+		value = "@ToString";
 		headerAndFooter(value);
 
 		System.out.println(new DefaultToString());
@@ -181,9 +183,9 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		headerAndFooter(value);
 	}
 
-	public void equalsAndHashCodeExample()
+	private void equalsAndHashCodeExample()
 	{
-		String value = "@EqualsAndHashCode";
+		value = "@EqualsAndHashCode";
 		headerAndFooter(value);
 
 		Set<EqualsAndHashCodeExample> set = new HashSet<>();
@@ -202,7 +204,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 
 	private void constructorsExample()
 	{
-		String value = "@NoArgsConstructor, @RequiredArgsConstructor, @AllArgsConstructor";
+		value = "@NoArgsConstructor, @RequiredArgsConstructor, @AllArgsConstructor";
 		headerAndFooter(value);
 
 		System.out.println("Printing @NoArgsConstructor using @ToString: " +
