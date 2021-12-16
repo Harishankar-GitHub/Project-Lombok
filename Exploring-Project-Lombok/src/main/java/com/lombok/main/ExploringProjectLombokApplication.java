@@ -21,6 +21,7 @@ import com.lombok7.equalsAndHashCode.EqualsAndHashCodeExample;
 import com.lombok8.constructors.AllArgsConstructorExample;
 import com.lombok8.constructors.NoArgsConstructorExample;
 import com.lombok8.constructors.RequiredArgsConstructorExample;
+import com.lombok9.data.DataExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -59,6 +60,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		toStringExample();
 		equalsAndHashCodeExample();
 		constructorsExample();
+		dataExample();
 	}
 
 	private void valExample() {
@@ -225,6 +227,22 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 								3,
 								null,
 								null));
+
+		headerAndFooter(value);
+	}
+
+	private void dataExample() {
+		value = "@Data";
+		headerAndFooter(value);
+
+		// @RequiredArgsConstructor
+		DataExample dataExample = new DataExample("Harish",
+				"ABC Company",
+				3);
+
+		System.out.println("Printing ToString() of DataExample: " + dataExample);
+		dataExample.setTeamName("Team Name set using Setter Method");
+		System.out.println("Using Getter and Setter Methods of DataExample: " + dataExample.getTeamName());
 
 		headerAndFooter(value);
 	}

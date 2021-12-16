@@ -31,3 +31,4 @@
 | [@ToString](https://github.com/Harishankar-GitHub/Project-Lombok/tree/main/Exploring-Project-Lombok/src/main/java/com/lombok6/toString) | [Click here](https://projectlombok.org/features/ToString) |
 | [@EqualsAndHashCode](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok7/equalsAndHashCode/EqualsAndHashCodeExample.java) | [Click here](https://projectlombok.org/features/EqualsAndHashCode) |
 | [Constructors]() | [Click here](https://projectlombok.org/features/constructor) |
+| [@Data]() | [Click here](https://projectlombok.org/features/Data) |
