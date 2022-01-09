@@ -1,6 +1,7 @@
 package com.lombok.main;
 
 import com.lombok1.val.Val;
+import com.lombok10.value.ValueExample;
 import com.lombok2.var.Var;
 import com.lombok3.nonNull.NonNullExample;
 import com.lombok3.nonNull.NonNullExampleWithConstructor;
@@ -61,6 +62,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		equalsAndHashCodeExample();
 		constructorsExample();
 		dataExample();
+		valueExample();
 	}
 
 	private void valExample() {
@@ -243,6 +245,21 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println("Printing ToString() of DataExample: " + dataExample);
 		dataExample.setTeamName("Team Name set using Setter Method");
 		System.out.println("Using Getter and Setter Methods of DataExample: " + dataExample.getTeamName());
+
+		headerAndFooter(value);
+	}
+
+	private void valueExample() {
+		value = "@Value";
+		headerAndFooter(value);
+
+		ValueExample valueExample = new ValueExample("Company Name", 3, "Amazing Team", "Cool Manager");
+		System.out.println("Printing fields using Getter Methods:");
+		System.out.println("Company: " + valueExample.getCompanyName());
+		System.out.println("Printing @ToString: " + valueExample);
+
+//		valueExample.setCompanyName("Company Name - Updated");
+//		Setter Methods are not available as the class is final.
 
 		headerAndFooter(value);
 	}
