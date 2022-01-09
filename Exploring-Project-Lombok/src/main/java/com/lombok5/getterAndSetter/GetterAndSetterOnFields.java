@@ -3,8 +3,7 @@ package com.lombok5.getterAndSetter;
 import lombok.Getter;
 import lombok.Setter;
 
-public class GetterAndSetterOnFields
-{
+public class GetterAndSetterOnFields {
     @Getter @Setter private long id;
     @Getter @Setter private String productCategory;
     @Getter @Setter private String modelName;

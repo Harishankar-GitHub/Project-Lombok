@@ -5,8 +5,7 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @ToString
-public class NoArgsConstructorExample
-{
+public class NoArgsConstructorExample {
     private String employeeName;
     private String companyName;
     private int yearsOfExperience;

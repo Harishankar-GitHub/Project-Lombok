@@ -6,8 +6,7 @@ import lombok.Setter;
 
 @EqualsAndHashCode
 @Getter @Setter
-public class EqualsAndHashCodeExample
-{
+public class EqualsAndHashCodeExample {
 //    NOTE: @EqualsAndHashCode.Include and @EqualsAndHashCode.Exclude can also be used on fields/methods if required.
 
     private String employeeName;
@@ -24,8 +23,7 @@ public class EqualsAndHashCodeExample
         this.managerName = managerName;
     }
 
-    public EqualsAndHashCodeExample()
-    {
+    public EqualsAndHashCodeExample() {
         this.employeeName = "Jack";
         this.companyName = "XYZ Company";
         this.yearsOfExperience = 3;

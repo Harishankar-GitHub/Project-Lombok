@@ -7,12 +7,10 @@ import java.io.FileReader;
 import java.io.IOException;
 
 @Component
-public class CleanupExample
-{
+public class CleanupExample {
     // Reference Link: https://www.javaguides.net/2019/03/project-lombok-automatic-resource-management-using-cleanup.html
 
-    public void example() throws IOException
-    {
+    public void example() throws IOException {
         @Cleanup
         FileReader fr = new FileReader("sample.txt");
         // The sample.txt file is in the project root folder.
@@ -22,8 +20,7 @@ public class CleanupExample
 
         String currentLine;
 
-        while ((currentLine = br.readLine()) != null)
-        {
+        while ((currentLine = br.readLine()) != null) {
             System.out.println(currentLine);
         }
     }

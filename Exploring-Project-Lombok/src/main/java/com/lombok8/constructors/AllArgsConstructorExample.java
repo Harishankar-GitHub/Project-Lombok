@@ -5,8 +5,7 @@ import lombok.ToString;
 
 @AllArgsConstructor(staticName = "of")
 @ToString
-public class AllArgsConstructorExample
-{
+public class AllArgsConstructorExample {
     private final String employeeName;
     private final String companyName;
     private final int yearsOfExperience;
@@ -14,5 +13,5 @@ public class AllArgsConstructorExample
     private String managerName;
 
     // If fields are marked with @NonNull, then null checks are generated.
-    // Otherwise the constructor accepts null and non null values.
+    // Otherwise, the constructor accepts null and non-null values.
 }

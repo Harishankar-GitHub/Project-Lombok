@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Getter @Setter     // Getters and Setters are generated for all the fields.
-public class NonNullWithGetterAndSetter
-{
+public class NonNullWithGetterAndSetter {
     @NonNull private String reviewTitle;
     // The Setter method of the above field will have @NonNull annotation.
     // So, null value can't be set to the above field.

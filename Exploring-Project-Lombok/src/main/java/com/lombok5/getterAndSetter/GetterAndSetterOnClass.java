@@ -5,8 +5,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Getter @Setter
-public class GetterAndSetterOnClass
-{
+public class GetterAndSetterOnClass {
     private long id;
     private String name;
     private LocalDate dateOfBirth;

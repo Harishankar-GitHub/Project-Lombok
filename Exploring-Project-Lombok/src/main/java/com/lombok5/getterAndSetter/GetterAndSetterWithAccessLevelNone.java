@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class GetterAndSetterWithAccessLevelNone
-{
+public class GetterAndSetterWithAccessLevelNone {
     private String company;
     private String technology;
     @Getter(AccessLevel.NONE) private int openings;     // Getter is not generated for this field.

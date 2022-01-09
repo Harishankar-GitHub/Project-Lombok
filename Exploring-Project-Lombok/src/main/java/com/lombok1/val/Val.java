@@ -6,22 +6,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @Component
-public class Val
-{
+public class Val {
     // Syntax:
     // Vanilla Java : final dataType variableName
     // With Lombok  : val variableName
 
-    public String example1()
-    {
+    public String example1() {
         val example = new ArrayList<String>();
         example.add("Hello, World!");
         val foo = example.get(0);
         return foo.toLowerCase();
     }
 
-    public void example2()
-    {
+    public void example2() {
         val map = new HashMap<Integer, String>();
         map.put(0, "zero");
         map.put(5, "five");

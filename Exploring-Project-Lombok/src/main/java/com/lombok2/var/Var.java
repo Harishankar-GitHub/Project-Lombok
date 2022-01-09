@@ -4,8 +4,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class Var
-{
+public class Var {
     // var works exactly like val.
     // But it is not marked as final.
 
@@ -13,8 +12,7 @@ public class Var
     // Vanilla Java : dataType variableName
     // With Lombok  : var variableName
 
-    public void example()
-    {
+    public void example() {
         var s = "I'm a String from var";
         var i = 123;
         var list = new ArrayList<Integer>();

@@ -5,14 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter(AccessLevel.PACKAGE)
-public class GetterAndSetterWithAccessLevel
-{
+public class GetterAndSetterWithAccessLevel {
     private String developerName;
     private String role;
     private int yearsOfExperience;
 
-    public GetterAndSetterWithAccessLevel(String developerName, String role, int yearsOfExperience)
-    {
+    public GetterAndSetterWithAccessLevel(String developerName, String role, int yearsOfExperience) {
         this.developerName = developerName;
         this.role = role;
         this.yearsOfExperience = yearsOfExperience;

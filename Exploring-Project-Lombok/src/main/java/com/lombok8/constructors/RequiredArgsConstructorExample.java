@@ -6,8 +6,7 @@ import lombok.ToString;
 
 @RequiredArgsConstructor(staticName = "of")
 @ToString
-public class RequiredArgsConstructorExample
-{
+public class RequiredArgsConstructorExample {
     private final String employeeName;
     private final String companyName;
     private final int yearsOfExperience;

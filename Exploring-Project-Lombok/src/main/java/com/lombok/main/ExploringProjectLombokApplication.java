@@ -52,7 +52,6 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
 		valExample();
 		varExample();
 		nonNullExample();
@@ -104,8 +103,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		headerAndFooter(value);
 	}
 
-	private void cleanupExample() throws IOException
-	{
+	private void cleanupExample() throws IOException {
 		value = "@Cleanup";
 		headerAndFooter(value);
 
@@ -114,8 +112,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		headerAndFooter(value);
 	}
 
-	private void getterAndSetterExample()
-	{
+	private void getterAndSetterExample() {
 		value = "@Getter/@Setter";
 		headerAndFooter(value);
 
@@ -127,8 +124,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		headerAndFooter(value);
 	}
 
-	private void getterAndSetterOnFields()
-	{
+	private void getterAndSetterOnFields() {
 		System.out.println("*** On Fields ***");
 
 		GetterAndSetterOnFields onFields = new GetterAndSetterOnFields();
@@ -139,8 +135,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println(onFields);
 	}
 
-	private void getterAndSetterOnClassLevel()
-	{
+	private void getterAndSetterOnClassLevel() {
 		System.out.println("*** On Class ***");
 
 		GetterAndSetterOnClass onClass = new GetterAndSetterOnClass();
@@ -151,8 +146,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println(onClass);
 	}
 
-	private void getterAndSetterWithAccessLevel()
-	{
+	private void getterAndSetterWithAccessLevel() {
 		System.out.println("*** With AccessLevel ***");
 
 		GetterAndSetterWithAccessLevel withAccessLevel = new GetterAndSetterWithAccessLevel
@@ -161,8 +155,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println(withAccessLevel);
 	}
 
-	private void getterAndSetterWithAccessLevelNone()
-	{
+	private void getterAndSetterWithAccessLevelNone() {
 		System.out.println("*** With AccessLevel.NONE ***");
 
 		GetterAndSetterWithAccessLevelNone withAccessLevelNone = new GetterAndSetterWithAccessLevelNone
@@ -171,8 +164,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println(withAccessLevelNone);
 	}
 
-	private void toStringExample()
-	{
+	private void toStringExample() {
 		value = "@ToString";
 		headerAndFooter(value);
 
@@ -187,8 +179,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		headerAndFooter(value);
 	}
 
-	private void equalsAndHashCodeExample()
-	{
+	private void equalsAndHashCodeExample() {
 		value = "@EqualsAndHashCode";
 		headerAndFooter(value);
 
@@ -206,8 +197,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		headerAndFooter(value);
 	}
 
-	private void constructorsExample()
-	{
+	private void constructorsExample() {
 		value = "@NoArgsConstructor, @RequiredArgsConstructor, @AllArgsConstructor";
 		headerAndFooter(value);
 
