@@ -19,6 +19,7 @@
 - [Writing More Readable Code with Project Lombok - Medium.com](https://medium.com/@yigitcannalci/how-to-use-project-lombok-with-spring-boot-ac84bd6047d1)
 - [Guide to use Lombok In Spring Boot - Medium.com](https://medium.com/spring-boot/guide-to-use-lombok-in-spring-boot-4e2035545f65)
 - [Lombok Configuration System - Baeldung](https://www.baeldung.com/lombok-configuration-system)
+- [Java Record vs Lombok](https://www.baeldung.com/java-record-vs-lombok)
 
 > ***Links to Code Snippets***
 
