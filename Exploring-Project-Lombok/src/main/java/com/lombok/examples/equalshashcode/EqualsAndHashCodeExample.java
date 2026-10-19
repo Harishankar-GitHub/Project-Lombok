@@ -8,6 +8,9 @@ import lombok.Setter;
 @Getter @Setter
 public class EqualsAndHashCodeExample {
 //    NOTE: @EqualsAndHashCode.Include and @EqualsAndHashCode.Exclude can also be used on fields/methods if required.
+//    See EqualsAndHashCodeExclude.
+//    CAUTION: This class also has @Setter. If a field changes after the object is added to a HashSet
+//    (or used as a HashMap key), its hash code changes and the set can't find it any more.
 
     private String employeeName;
     private String companyName;
