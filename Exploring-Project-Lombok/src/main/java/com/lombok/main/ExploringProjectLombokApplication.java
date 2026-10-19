@@ -1,7 +1,14 @@
 package com.lombok.main;
 
 import com.lombok1.val.Val;
+import com.lombok10.value.RecordExample;
 import com.lombok10.value.ValueExample;
+import com.lombok11.builder.BuilderExample;
+import com.lombok12.with.WithExample;
+import com.lombok13.log.LogExample;
+import com.lombok14.sneakyThrows.SneakyThrowsExample;
+import com.lombok15.lazyGetter.LazyGetterExample;
+import com.lombok16.synchronizedAndLocked.SynchronizedAndLockedExample;
 import com.lombok2.var.Var;
 import com.lombok3.nonNull.NonNullExample;
 import com.lombok3.nonNull.NonNullExampleWithConstructor;
@@ -31,6 +38,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 // scanBasePackages is used instead of a separate @ComponentScan,
@@ -46,6 +54,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 	@Autowired Var var;
 	@Autowired NonNullExample nonNull;
 	@Autowired CleanupExample cleanupExample;
+	@Autowired LogExample logExample;
 
 	String value;
 
@@ -61,6 +70,13 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		constructorsExample();
 		dataExample();
 		valueExample();
+		recordExample();
+		builderExample();
+		withExample();
+		logExample();
+		sneakyThrowsExample();
+		lazyGetterExample();
+		synchronizedAndLockedExample();
 	}
 
 	private void valExample() {
@@ -265,6 +281,117 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 //		valueExample.setCompanyName("Company Name - Updated");
 //		Setter Methods are not generated, as @Value makes all the fields final.
 //		(The class is also made final, which only means it can't be extended.)
+
+		headerAndFooter(value);
+	}
+
+	private void recordExample() {
+		value = "Java record (compared with @Value)";
+		headerAndFooter(value);
+
+		RecordExample recordExample = new RecordExample("Company Name", 3, "Amazing Team", "Cool Manager");
+		System.out.println("Company using the accessor method: " + recordExample.companyName());
+		System.out.println("Printing toString(): " + recordExample);
+		System.out.println("equals() is generated too: " +
+				recordExample.equals(new RecordExample("Company Name", 3, "Amazing Team", "Cool Manager")));
+
+		headerAndFooter(value);
+	}
+
+	private void builderExample() {
+		value = "@Builder";
+		headerAndFooter(value);
+
+		BuilderExample builderExample = BuilderExample.builder()
+				.employeeName("Harish")
+				.companyName("ABC Company")
+				.skill("Java")
+				.skill("Spring Boot")
+				.build();
+		System.out.println("Built using the builder: " + builderExample);
+		// yearsOfExperience is 1 because of @Builder.Default, even though it isn't set above.
+
+		BuilderExample withMoreSkills = builderExample.toBuilder()
+				.yearsOfExperience(3)
+				.skills(List.of("Docker", "Kubernetes"))
+				.build();
+		System.out.println("Copied using toBuilder(): " + withMoreSkills);
+		System.out.println("The original is unchanged: " + builderExample);
+
+		headerAndFooter(value);
+	}
+
+	private void withExample() {
+		value = "@With";
+		headerAndFooter(value);
+
+		WithExample withExample = new WithExample("Harish", "ABC Company", 3);
+		WithExample promoted = withExample.withYearsOfExperience(4);
+		System.out.println("Original: " + withExample);
+		System.out.println("Copy with yearsOfExperience changed: " + promoted);
+		System.out.println("Same value returns the same object: " +
+				(withExample == withExample.withCompanyName("ABC Company")));
+
+		headerAndFooter(value);
+	}
+
+	private void logExample() {
+		value = "@Slf4j";
+		headerAndFooter(value);
+
+		logExample.example();
+
+		headerAndFooter(value);
+	}
+
+	private void sneakyThrowsExample() {
+		value = "@SneakyThrows";
+		headerAndFooter(value);
+
+		SneakyThrowsExample sneakyThrowsExample = new SneakyThrowsExample();
+		System.out.println("Encoded without a try/catch: " + sneakyThrowsExample.encode("Project Lombok & Java"));
+		try {
+			sneakyThrowsExample.fail();
+		} catch (Exception e) {
+			System.out.println("Caught " + e.getClass().getName() + " (a checked exception): " + e.getMessage());
+		}
+
+		headerAndFooter(value);
+	}
+
+	private void lazyGetterExample() {
+		value = "@Getter(lazy = true)";
+		headerAndFooter(value);
+
+		LazyGetterExample lazyGetterExample = new LazyGetterExample();
+		System.out.println("Object created. The value isn't computed yet.");
+		System.out.println("1st call: " + lazyGetterExample.getExpensiveValue());
+		System.out.println("2nd call: " + lazyGetterExample.getExpensiveValue());
+
+		headerAndFooter(value);
+	}
+
+	private void synchronizedAndLockedExample() throws InterruptedException {
+		value = "@Synchronized, @Locked";
+		headerAndFooter(value);
+
+		SynchronizedAndLockedExample example = new SynchronizedAndLockedExample();
+		Runnable task = () -> {
+			for (int i = 0; i < 10_000; i++) {
+				example.incrementSynchronizedCounter();
+				example.incrementLockedCounter();
+			}
+		};
+
+		// Two threads increment the counters at the same time.
+		// Without the locks, some increments would be lost and the counters would be less than 20000.
+		Thread thread1 = Thread.ofVirtual().start(task);
+		Thread thread2 = Thread.ofVirtual().start(task);
+		thread1.join();
+		thread2.join();
+
+		System.out.println("@Synchronized counter: " + example.getSynchronizedCounter());
+		System.out.println("@Locked counter: " + example.getLockedCounter());
 
 		headerAndFooter(value);
 	}
