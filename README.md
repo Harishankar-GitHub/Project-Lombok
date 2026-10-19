@@ -42,7 +42,7 @@ Exploring-Project-Lombok/
 | [@Cleanup](Exploring-Project-Lombok/src/main/java/com/lombok/examples/cleanup/CleanupExample.java) | [Click here](https://projectlombok.org/features/Cleanup) |
 | [@Getter/@Setter](Exploring-Project-Lombok/src/main/java/com/lombok/examples/gettersetter) | [Click here](https://projectlombok.org/features/GetterSetter) |
 | [@ToString](Exploring-Project-Lombok/src/main/java/com/lombok/examples/tostring) | [Click here](https://projectlombok.org/features/ToString) |
-| [@EqualsAndHashCode](Exploring-Project-Lombok/src/main/java/com/lombok/examples/equalshashcode/EqualsAndHashCodeExample.java) | [Click here](https://projectlombok.org/features/EqualsAndHashCode) |
+| [@EqualsAndHashCode](Exploring-Project-Lombok/src/main/java/com/lombok/examples/equalshashcode) | [Click here](https://projectlombok.org/features/EqualsAndHashCode) |
 | [Constructors](Exploring-Project-Lombok/src/main/java/com/lombok/examples/constructors) | [Click here](https://projectlombok.org/features/constructor) |
 | [@Data](Exploring-Project-Lombok/src/main/java/com/lombok/examples/data/DataExample.java) | [Click here](https://projectlombok.org/features/Data) |
 | [@Value](Exploring-Project-Lombok/src/main/java/com/lombok/examples/value/ValueExample.java) | [Click here](https://projectlombok.org/features/Value) |
