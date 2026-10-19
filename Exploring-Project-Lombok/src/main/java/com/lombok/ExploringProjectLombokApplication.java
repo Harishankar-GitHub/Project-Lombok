@@ -7,6 +7,9 @@ import com.lombok.examples.constructors.NoArgsConstructorExample;
 import com.lombok.examples.constructors.RequiredArgsConstructorExample;
 import com.lombok.examples.data.DataExample;
 import com.lombok.examples.equalshashcode.EqualsAndHashCodeExample;
+import com.lombok.examples.equalshashcode.EqualsAndHashCodeExclude;
+import com.lombok.examples.equalshashcode.EqualsAndHashCodeWithCallSuper;
+import com.lombok.examples.equalshashcode.EqualsAndHashCodeWithoutCallSuper;
 import com.lombok.examples.gettersetter.GetterAndSetterOnClass;
 import com.lombok.examples.gettersetter.GetterAndSetterOnFields;
 import com.lombok.examples.gettersetter.GetterAndSetterWithAccessLevel;
@@ -30,7 +33,7 @@ import com.lombok.examples.value.RecordExample;
 import com.lombok.examples.value.ValueExample;
 import com.lombok.examples.var.Var;
 import com.lombok.examples.with.WithExample;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -43,69 +46,57 @@ import java.util.Set;
 
 // All the examples are in sub-packages of com.lombok, so the default component scan finds them.
 @SpringBootApplication
+@RequiredArgsConstructor
 public class ExploringProjectLombokApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ExploringProjectLombokApplication.class, args);
 	}
 
-	@Autowired Val val;
-	@Autowired Var var;
-	@Autowired NonNullExample nonNull;
-	@Autowired CleanupExample cleanupExample;
-	@Autowired LogExample logExample;
-
-	String value;
+	// Spring beans used by the examples. @RequiredArgsConstructor generates a constructor for these final fields,
+	// and Spring injects the beans through it, so @Autowired isn't needed.
+	private final Val valExample;
+	private final Var varExample;
+	private final NonNullExample nonNullExample;
+	private final CleanupExample cleanupExample;
+	private final LogExample logExample;
 
 	@Override
 	public void run(String... args) throws Exception {
-		valExample();
-		varExample();
-		nonNullExample();
-		cleanupExample();
-		getterAndSetterExample();
-		toStringExample();
-		equalsAndHashCodeExample();
-		constructorsExample();
-		dataExample();
-		valueExample();
-		recordExample();
-		builderExample();
-		withExample();
-		logExample();
-		sneakyThrowsExample();
-		lazyGetterExample();
-		synchronizedAndLockedExample();
+		section("@val", this::showVal);
+		section("@var", this::showVar);
+		section("@NonNull", this::showNonNull);
+		section("@Cleanup", this::showCleanup);
+		section("@Getter/@Setter", this::showGetterAndSetter);
+		section("@ToString", this::showToString);
+		section("@EqualsAndHashCode", this::showEqualsAndHashCode);
+		section("@NoArgsConstructor, @RequiredArgsConstructor, @AllArgsConstructor", this::showConstructors);
+		section("@Data", this::showData);
+		section("@Value", this::showValue);
+		section("Java record (compared with @Value)", this::showRecord);
+		section("@Builder", this::showBuilder);
+		section("@With", this::showWith);
+		section("@Slf4j", this::showLog);
+		section("@SneakyThrows", this::showSneakyThrows);
+		section("@Getter(lazy = true)", this::showLazyGetter);
+		section("@Synchronized, @Locked", this::showSynchronizedAndLocked);
 	}
 
-	private void valExample() {
-		value = "@val";
-		headerAndFooter(value);
-
-		System.out.println("Val Example 1: " + val.example1());
+	private void showVal() {
+		System.out.println("Val Example 1: " + valExample.example1());
 		System.out.println("Val Example 2: ");
-		val.example2();
-
-		headerAndFooter(value);
+		valExample.example2();
 	}
 
-	private void varExample() {
-		value = "@var";
-		headerAndFooter(value);
-
-		var.example();
-
-		headerAndFooter(value);
+	private void showVar() {
+		varExample.example();
 	}
 
-	private void nonNullExample() {
-		value = "@NonNull";
-		headerAndFooter(value);
-
-		nonNull.example("A valid String");
-		nonNull.example("");
+	private void showNonNull() {
+		nonNullExample.example("A valid String");
+		nonNullExample.example("");
 		try {
-			nonNull.example(null);
+			nonNullExample.example(null);
 		} catch (IllegalArgumentException e) {
 			System.out.println("Method parameter: " + e.getMessage());
 		}
@@ -128,29 +119,17 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		}
 		// NOTE: IllegalArgumentException is thrown instead of the default NullPointerException
 		// because of lombok.nonNull.exceptionType in lombok.config.
-
-		headerAndFooter(value);
 	}
 
-	private void cleanupExample() throws IOException {
-		value = "@Cleanup";
-		headerAndFooter(value);
-
+	private void showCleanup() throws IOException {
 		cleanupExample.example();
-
-		headerAndFooter(value);
 	}
 
-	private void getterAndSetterExample() {
-		value = "@Getter/@Setter";
-		headerAndFooter(value);
-
+	private void showGetterAndSetter() {
 		getterAndSetterOnFields();
 		getterAndSetterOnClassLevel();
 		getterAndSetterWithAccessLevel();
 		getterAndSetterWithAccessLevelNone();
-
-		headerAndFooter(value);
 	}
 
 	private void getterAndSetterOnFields() {
@@ -193,10 +172,7 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println(withAccessLevelNone);
 	}
 
-	private void toStringExample() {
-		value = "@ToString";
-		headerAndFooter(value);
-
+	private void showToString() {
 		System.out.println(new DefaultToString());
 		System.out.println(new ToStringWithIncludeFieldNames());
 		System.out.println(new ToStringExclude());
@@ -204,32 +180,42 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println(new ToStringWithCallSuper());
 		System.out.println(new ToStringWithMethod());
 		System.out.println(new ToStringWithNameAndRank());
-
-		headerAndFooter(value);
 	}
 
-	private void equalsAndHashCodeExample() {
-		value = "@EqualsAndHashCode";
-		headerAndFooter(value);
-
+	private void showEqualsAndHashCode() {
 		Set<EqualsAndHashCodeExample> set = new HashSet<>();
 
 		set.add(new EqualsAndHashCodeExample());
 		System.out.println("Size of the Set after adding 1st element: " + set.size());
 		set.add(new EqualsAndHashCodeExample());
 		System.out.println("Size of the Set after adding 2nd element: " + set.size());
-		set.add(new EqualsAndHashCodeExample("Jill", "XYZ Company", 3, "Awesome Team !", "Cool Manager"));
+		EqualsAndHashCodeExample jill = new EqualsAndHashCodeExample("Jill", "XYZ Company", 3, "Awesome Team !", "Cool Manager");
+		set.add(jill);
 		System.out.println("Size of the Set after adding 3rd element: " + set.size());
 
 		System.out.println("EqualsAndHashCode Set has " + set.size() + " elements!");
 
-		headerAndFooter(value);
+		System.out.println("*** Changing a field after adding to a HashSet ***");
+		System.out.println("Set contains Jill: " + set.contains(jill));
+		jill.setTeamName("New Team");
+		System.out.println("After changing Jill's team, Set contains Jill: " + set.contains(jill));
+		// The hash code changed, so the HashSet looks in the wrong place. Jill is still in it, but can't be found.
+
+		System.out.println("*** @EqualsAndHashCode.Exclude ***");
+		EqualsAndHashCodeExclude firstLogin = new EqualsAndHashCodeExclude(1L, "Jack", 1);
+		EqualsAndHashCodeExclude tenthLogin = new EqualsAndHashCodeExclude(1L, "Jack", 10);
+		System.out.println("Equal, as the excluded loginCount is ignored: " + firstLogin.equals(tenthLogin));
+
+		System.out.println("*** callSuper ***");
+		System.out.println("Without callSuper, Jack equals Jill at the same company: " +
+				new EqualsAndHashCodeWithoutCallSuper("Jack", "XYZ Company")
+						.equals(new EqualsAndHashCodeWithoutCallSuper("Jill", "XYZ Company")));
+		System.out.println("With callSuper = true, Jack equals Jill at the same company: " +
+				new EqualsAndHashCodeWithCallSuper("Jack", "XYZ Company")
+						.equals(new EqualsAndHashCodeWithCallSuper("Jill", "XYZ Company")));
 	}
 
-	private void constructorsExample() {
-		value = "@NoArgsConstructor, @RequiredArgsConstructor, @AllArgsConstructor";
-		headerAndFooter(value);
-
+	private void showConstructors() {
 		System.out.println("Printing @NoArgsConstructor using @ToString: " +
 				new NoArgsConstructorExample());
 
@@ -248,14 +234,9 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 								3,
 								null,
 								null));
-
-		headerAndFooter(value);
 	}
 
-	private void dataExample() {
-		value = "@Data";
-		headerAndFooter(value);
-
+	private void showData() {
 		// @RequiredArgsConstructor
 		DataExample dataExample = new DataExample("Harish",
 				"ABC Company",
@@ -265,13 +246,13 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		dataExample.setTeamName("Team Name set using Setter Method");
 		System.out.println("Using Getter and Setter Methods of DataExample: " + dataExample.getTeamName());
 
-		headerAndFooter(value);
+		DataExample sameValues = new DataExample("Harish", "ABC Company", 3);
+		sameValues.setTeamName("Team Name set using Setter Method");
+		System.out.println("equals() compares all the fields: " + dataExample.equals(sameValues));
+		System.out.println("So hashCode() is the same too: " + (dataExample.hashCode() == sameValues.hashCode()));
 	}
 
-	private void valueExample() {
-		value = "@Value";
-		headerAndFooter(value);
-
+	private void showValue() {
 		ValueExample valueExample = new ValueExample("Company Name", 3, "Amazing Team", "Cool Manager");
 		System.out.println("Printing fields using Getter Methods:");
 		System.out.println("Company: " + valueExample.getCompanyName());
@@ -280,27 +261,17 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 //		valueExample.setCompanyName("Company Name - Updated");
 //		Setter Methods are not generated, as @Value makes all the fields final.
 //		(The class is also made final, which only means it can't be extended.)
-
-		headerAndFooter(value);
 	}
 
-	private void recordExample() {
-		value = "Java record (compared with @Value)";
-		headerAndFooter(value);
-
+	private void showRecord() {
 		RecordExample recordExample = new RecordExample("Company Name", 3, "Amazing Team", "Cool Manager");
 		System.out.println("Company using the accessor method: " + recordExample.companyName());
 		System.out.println("Printing toString(): " + recordExample);
 		System.out.println("equals() is generated too: " +
 				recordExample.equals(new RecordExample("Company Name", 3, "Amazing Team", "Cool Manager")));
-
-		headerAndFooter(value);
 	}
 
-	private void builderExample() {
-		value = "@Builder";
-		headerAndFooter(value);
-
+	private void showBuilder() {
 		BuilderExample builderExample = BuilderExample.builder()
 				.employeeName("Harish")
 				.companyName("ABC Company")
@@ -316,37 +287,22 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 				.build();
 		System.out.println("Copied using toBuilder(): " + withMoreSkills);
 		System.out.println("The original is unchanged: " + builderExample);
-
-		headerAndFooter(value);
 	}
 
-	private void withExample() {
-		value = "@With";
-		headerAndFooter(value);
-
+	private void showWith() {
 		WithExample withExample = new WithExample("Harish", "ABC Company", 3);
 		WithExample promoted = withExample.withYearsOfExperience(4);
 		System.out.println("Original: " + withExample);
 		System.out.println("Copy with yearsOfExperience changed: " + promoted);
 		System.out.println("Same value returns the same object: " +
 				(withExample == withExample.withCompanyName("ABC Company")));
-
-		headerAndFooter(value);
 	}
 
-	private void logExample() {
-		value = "@Slf4j";
-		headerAndFooter(value);
-
+	private void showLog() {
 		logExample.example();
-
-		headerAndFooter(value);
 	}
 
-	private void sneakyThrowsExample() {
-		value = "@SneakyThrows";
-		headerAndFooter(value);
-
+	private void showSneakyThrows() {
 		SneakyThrowsExample sneakyThrowsExample = new SneakyThrowsExample();
 		System.out.println("Encoded without a try/catch: " + sneakyThrowsExample.encode("Project Lombok & Java"));
 		try {
@@ -354,26 +310,16 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		} catch (Exception e) {
 			System.out.println("Caught " + e.getClass().getName() + " (a checked exception): " + e.getMessage());
 		}
-
-		headerAndFooter(value);
 	}
 
-	private void lazyGetterExample() {
-		value = "@Getter(lazy = true)";
-		headerAndFooter(value);
-
+	private void showLazyGetter() {
 		LazyGetterExample lazyGetterExample = new LazyGetterExample();
 		System.out.println("Object created. The value isn't computed yet.");
 		System.out.println("1st call: " + lazyGetterExample.getExpensiveValue());
 		System.out.println("2nd call: " + lazyGetterExample.getExpensiveValue());
-
-		headerAndFooter(value);
 	}
 
-	private void synchronizedAndLockedExample() throws InterruptedException {
-		value = "@Synchronized, @Locked";
-		headerAndFooter(value);
-
+	private void showSynchronizedAndLocked() throws InterruptedException {
 		SynchronizedAndLockedExample example = new SynchronizedAndLockedExample();
 		Runnable task = () -> {
 			for (int i = 0; i < 10_000; i++) {
@@ -391,11 +337,21 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 
 		System.out.println("@Synchronized counter: " + example.getSynchronizedCounter());
 		System.out.println("@Locked counter: " + example.getLockedCounter());
-
-		headerAndFooter(value);
 	}
 
-	private void headerAndFooter(String val) {
-		System.out.println("\n**************** Project Lombok: "+ val + " ****************\n");
+	// Prints the title before and after an example, so its output is easy to find.
+	private void section(String title, Example example) throws Exception {
+		printBanner(title);
+		example.run();
+		printBanner(title);
+	}
+
+	private void printBanner(String title) {
+		System.out.println("\n**************** Project Lombok: " + title + " ****************\n");
+	}
+
+	@FunctionalInterface
+	private interface Example {
+		void run() throws Exception;
 	}
 }
