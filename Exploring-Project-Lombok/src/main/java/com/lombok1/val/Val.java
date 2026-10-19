@@ -11,6 +11,8 @@ public class Val {
     // Vanilla Java : final dataType variableName
     // With Lombok  : val variableName
 
+    // NOTE: On Java 10+, val is the same as writing "final var".
+
     public String example1() {
         val example = new ArrayList<String>();
         example.add("Hello, World!");
@@ -23,7 +25,7 @@ public class Val {
         map.put(0, "zero");
         map.put(5, "five");
         for (val entry : map.entrySet()) {
-            System.out.printf("%d: %s\n", entry.getKey(), entry.getValue());
+            System.out.printf("%d: %s%n", entry.getKey(), entry.getValue());
         }
     }
 }

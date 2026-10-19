@@ -27,15 +27,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@SpringBootApplication
-@ComponentScan("com.lombok*")
+// scanBasePackages is used instead of a separate @ComponentScan,
+// which would replace the default exclude filters of @SpringBootApplication.
+@SpringBootApplication(scanBasePackages = "com.lombok*")
 public class ExploringProjectLombokApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
@@ -46,7 +46,6 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 	@Autowired Var var;
 	@Autowired NonNullExample nonNull;
 	@Autowired CleanupExample cleanupExample;
-	@Autowired NonNullWithGetterAndSetter withGetterAndSetter;
 
 	String value;
 
@@ -90,15 +89,30 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 
 		nonNull.example("A valid String");
 		nonNull.example("");
-//		nonNull.example(null);
+		try {
+			nonNull.example(null);
+		} catch (IllegalArgumentException e) {
+			System.out.println("Method parameter: " + e.getMessage());
+		}
 
 		new NonNullExampleWithConstructor("I'm a String passed to the Constructor!");
-//		new NonNullExampleWithConstructor(null);
+		try {
+			new NonNullExampleWithConstructor(null);
+		} catch (IllegalArgumentException e) {
+			System.out.println("Constructor parameter: " + e.getMessage());
+		}
 
-//		withGetterAndSetter.setReviewTitle(null);		// ReviewTitle is marked as @NonNull.
-//		System.out.println(withGetterAndSetter);
+		NonNullWithGetterAndSetter withGetterAndSetter = new NonNullWithGetterAndSetter();
+		withGetterAndSetter.setReviewTitle("Review title");
 		withGetterAndSetter.setReviewDescription("Review description");
 		System.out.println(withGetterAndSetter);
+		try {
+			withGetterAndSetter.setReviewTitle(null);		// ReviewTitle is marked as @NonNull.
+		} catch (IllegalArgumentException e) {
+			System.out.println("Setter: " + e.getMessage());
+		}
+		// NOTE: IllegalArgumentException is thrown instead of the default NullPointerException
+		// because of lombok.nonNull.exceptionType in lombok.config.
 
 		headerAndFooter(value);
 	}
@@ -249,7 +263,8 @@ public class ExploringProjectLombokApplication implements CommandLineRunner {
 		System.out.println("Printing @ToString: " + valueExample);
 
 //		valueExample.setCompanyName("Company Name - Updated");
-//		Setter Methods are not available as the class is final.
+//		Setter Methods are not generated, as @Value makes all the fields final.
+//		(The class is also made final, which only means it can't be extended.)
 
 		headerAndFooter(value);
 	}

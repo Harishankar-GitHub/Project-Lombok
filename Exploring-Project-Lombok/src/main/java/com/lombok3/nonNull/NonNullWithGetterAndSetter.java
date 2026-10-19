@@ -3,14 +3,15 @@ package com.lombok3.nonNull;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
-@Component
 @Getter @Setter     // Getters and Setters are generated for all the fields.
 public class NonNullWithGetterAndSetter {
     @NonNull private String reviewTitle;
     // The Setter method of the above field will have @NonNull annotation.
-    // So, null value can't be set to the above field.
+    // So, null value can't be set to the above field using the Setter.
+    // NOTE: @NonNull on a field only adds null checks to the generated Setter/Constructor.
+    // It doesn't stop the field from being null, e.g. when the object is created
+    // using a no-args constructor and the Setter is never called.
     private String reviewDescription;
 
     @Override

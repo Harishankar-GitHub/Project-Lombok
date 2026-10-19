@@ -1,12 +1,16 @@
 ## Project Lombok - A Java Library
 
+> ***How to run***
+- Requires **Java 21** (Spring Boot 4.1).
+- From the `Exploring-Project-Lombok` folder, run `./mvnw spring-boot:run` (or `mvnw.cmd spring-boot:run` on Windows).
+- In the IDE, enable annotation processing (IntelliJ: *Settings > Build, Execution, Deployment > Compiler > Annotation Processors*) so the generated methods are visible.
+
 > ***Official Website/Document links***
 - [**Project Lombok - Official Website**](https://projectlombok.org/)
 - [Stable Features](https://projectlombok.org/features/all)
 - [***Lombok Configuration System***](https://projectlombok.org/features/configuration)
 - [Experimental Features](https://projectlombok.org/features/experimental/all)
 - [Lombok Javadoc](https://projectlombok.org/api/)
-- [Lombok Oracle Doc](https://www.oracle.com/corporate/features/project-lombok.html)
 - [Installing Lombok](https://projectlombok.org/setup/overview)
 - [Lombok Download](https://projectlombok.org/download) and [Lombok Changelog](https://projectlombok.org/changelog)
 - [Lombok Maven Plugin](http://anthonywhitford.com/lombok.maven/lombok-maven-plugin/)
@@ -34,4 +38,4 @@
 | [@EqualsAndHashCode](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok7/equalsAndHashCode/EqualsAndHashCodeExample.java) | [Click here](https://projectlombok.org/features/EqualsAndHashCode) |
 | [Constructors](https://github.com/Harishankar-GitHub/Project-Lombok/tree/main/Exploring-Project-Lombok/src/main/java/com/lombok8/constructors) | [Click here](https://projectlombok.org/features/constructor) |
 | [@Data](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok9/data/DataExample.java) | [Click here](https://projectlombok.org/features/Data) |
-| [@Value]() | [Click here](https://projectlombok.org/features/Value) |
+| [@Value](https://github.com/Harishankar-GitHub/Project-Lombok/blob/main/Exploring-Project-Lombok/src/main/java/com/lombok10/value/ValueExample.java) | [Click here](https://projectlombok.org/features/Value) |
